@@ -29,7 +29,8 @@ function Turn({author, books}) {
         </div>
 
         <div className="col-6 list-group">
-            {books.map(title => <a className="list-group-item list-group-item-action" key={title}>{title}</a>)}
+            {books.map(title => <a className="list-group-item list-group-item-action"
+                                   key={title}>{title}</a>)}
         </div>
     </div>
 }
