@@ -11,13 +11,13 @@ const authors = [
         name: 'Mark Twain',
         imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Mark_Twain%2C_Brady-Handy_photo_portrait%2C_Feb_7%2C_1871%2C_cropped.jpg',
         imageSource: 'Wikipedia Commons',
-        books: ['The Adventures of Huckleberry Finn', 'Life on the Mississippi', 'Roughing it']
+        books: ['The Adventures of Huckleberry Finn', 'Life on the Mississippi']
     },
     {
         name: 'Brandon Sanderson',
         imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Brandon_Sanderson_sign.jpg',
         imageSource: 'Wikipedia Commons',
-        books: ['Elantris', 'Mistborn', 'The Way of Kings']
+        books: ['Elantris', 'The Way of Kings']
     },
     {
         name: 'Kent Beck',
@@ -29,19 +29,19 @@ const authors = [
         name: 'Harper Lee',
         imageUrl: 'https://www.latimes.com/resizer/6EJAg9xU-x1zWFRQrBlakXkBtyg=/1200x1200/www.trbimg.com/img-56c8a0bf/turbine/ct-harper-lee-20160220',
         imageSource: 'Wikipedia Commons',
-        books: ['To Kill a Mockingbird']
+        books: ['To Kill a Mockingbird', "Go Set a Watchman"]
     },
     {
         name: 'Robert Martin',
         imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Robert_Cecil_Martin.png',
         imageSource: 'Wikipedia Commons',
-        books: ['Clean Code', 'Clean Architecture', 'The Clean Coder']
+        books: ['Clean Code', 'Clean Architecture']
     },
     {
         name: 'Agatha Christie',
         imageUrl: 'https://ksassets.timeincuk.net/wp/uploads/sites/46/2015/09/Agatha-Christie-614x920.jpg',
         imageSource: 'Wikipedia Commons',
-        books: ['Murder on the Orient Express', 'Death on the Nile', 'The Mousetrap', 'And Then There Were None']
+        books: ['Murder on the Orient Express', 'Death on the Nile']
     }
 ];
 
