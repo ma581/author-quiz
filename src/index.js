@@ -32,10 +32,16 @@ const authors = [
         books: ['To Kill a Mockingbird']
     },
     {
-        name: 'Robert Marting',
+        name: 'Robert Martin',
         imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Robert_Cecil_Martin.png',
         imageSource: 'Wikipedia Commons',
-        books: ['Clean Code']
+        books: ['Clean Code', 'Clean Architecture', 'The Clean Coder']
+    },
+    {
+        name: 'Agatha Christie',
+        imageUrl: 'https://ksassets.timeincuk.net/wp/uploads/sites/46/2015/09/Agatha-Christie-614x920.jpg',
+        imageSource: 'Wikipedia Commons',
+        books: ['Murder on the Orient Express', 'Death on the Nile', 'The Mousetrap', 'And Then There Were None']
     }
 ];
 
