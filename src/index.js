@@ -30,6 +30,12 @@ const authors = [
         imageUrl: 'https://www.latimes.com/resizer/6EJAg9xU-x1zWFRQrBlakXkBtyg=/1200x1200/www.trbimg.com/img-56c8a0bf/turbine/ct-harper-lee-20160220',
         imageSource: 'Wikipedia Commons',
         books: ['To Kill a Mockingbird']
+    },
+    {
+        name: 'Robert Marting',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Robert_Cecil_Martin.png',
+        imageSource: 'Wikipedia Commons',
+        books: ['Clean Code']
     }
 ];
 
@@ -37,11 +43,12 @@ function getTurnData(authors) {
     const allBooks = authors.reduce((p, c) => p.concat(c.books), []);
     const fourRandomBooks = shuffle(allBooks).slice(0, 4);
     const correctAnswer = sample(fourRandomBooks);
+    const pickedAuthor = authors.find(a => a.books.some(title => title === correctAnswer));
 
     return {
         books: fourRandomBooks,
-        author: authors.find(a => a.books.some(title => title === correctAnswer)),
-        correctBook: correctAnswer
+        author: pickedAuthor,
+        correctBooks: pickedAuthor.books
     }
 }
 
@@ -57,7 +64,6 @@ class Game extends React.Component {
     }
 
     refreshGame() {
-        console.log('refreshing the game...');
         this.setState({turnData: getTurnData(authors)});
     }
 }

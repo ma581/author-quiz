@@ -37,7 +37,7 @@ export default class AuthorQuiz extends React.Component {
     handleOnClick(title) {
         this.setState({
             attemptedToAnswer: true,
-            answeredCorrectly: this.props.correctBook === title
+            answeredCorrectly: this.props.correctBooks.find(t => t === title)
         })
     };
 
