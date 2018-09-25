@@ -7,14 +7,11 @@ import Turn from './Turn';
 
 export default class AuthorQuiz extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            author: this.props.turnData.author,
-            books: this.props.turnData.books,
             attemptedToAnswer: false,
             answeredCorrectly: false,
-            correctBook: this.props.turnData.correctBook
         };
         this.handleOnClick.bind(this);
         this.continue.bind(this);
@@ -22,8 +19,8 @@ export default class AuthorQuiz extends React.Component {
 
     render() {
         const turnProps = {
-            author: this.state.author,
-            books: this.state.books,
+            author: this.props.author,
+            books: this.props.books,
             onClick: t => this.handleOnClick(t)
         };
 
@@ -40,7 +37,7 @@ export default class AuthorQuiz extends React.Component {
     handleOnClick(title) {
         this.setState({
             attemptedToAnswer: true,
-            answeredCorrectly: this.state.correctBook === title
+            answeredCorrectly: this.props.correctBook === title
         })
     };
 

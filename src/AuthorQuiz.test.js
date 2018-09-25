@@ -12,6 +12,6 @@ describe('Author Quiz', () => {
     };
     it('should render', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<AuthorQuiz {...state}/>, div);
+        ReactDOM.render(<AuthorQuiz {...state.turnData}/>, div);
     });
 });

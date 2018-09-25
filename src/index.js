@@ -53,7 +53,7 @@ class Game extends React.Component {
     }
 
     render(){
-        return <AuthorQuiz {...this.state} onClick={() => this.refreshGame()}/>
+        return <AuthorQuiz {...this.state.turnData} onClick={() => this.refreshGame()}/>
     }
 
     refreshGame() {
