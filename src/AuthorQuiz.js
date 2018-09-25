@@ -17,6 +17,7 @@ export default class AuthorQuiz extends React.Component {
             correctBook: this.props.turnData.correctBook
         };
         this.handleOnClick.bind(this);
+        this.continue.bind(this);
     }
 
     render() {
@@ -45,6 +46,6 @@ export default class AuthorQuiz extends React.Component {
 
     continue() {
         this.setState({attemptedToAnswer: false});
-
+        this.props.onClick();
     }
 }

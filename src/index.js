@@ -33,10 +33,6 @@ const authors = [
     }
 ];
 
-const state = {
-    turnData: getTurnData(authors)
-};
-
 function getTurnData(authors) {
     const allBooks = authors.reduce((p, c) => p.concat(c.books), []);
     const fourRandomBooks = shuffle(allBooks).slice(0, 4);
@@ -49,6 +45,22 @@ function getTurnData(authors) {
     }
 }
 
+class Game extends React.Component {
 
-ReactDOM.render(<AuthorQuiz {...state}/>, document.getElementById('root'));
+    constructor(){
+        super();
+        this.state = {turnData: getTurnData(authors)}
+    }
+
+    render(){
+        return <AuthorQuiz {...this.state} onClick={() => this.refreshGame()}/>
+    }
+
+    refreshGame() {
+        console.log('refreshing the game...');
+        this.setState({turnData: getTurnData(authors)});
+    }
+}
+
+ReactDOM.render(<Game/>, document.getElementById('root'));
 registerServiceWorker();

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 export default function Turn({author, books, onClick}) {
     return <div className="row turn" style={{backgroundColor: "white"}}>
@@ -13,3 +14,9 @@ export default function Turn({author, books, onClick}) {
         </div>
     </div>
 }
+
+Turn.propTypes = {
+    author: PropTypes.shape({
+        name: PropTypes.string.isRequired
+    })
+};
