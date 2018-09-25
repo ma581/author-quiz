@@ -23,7 +23,8 @@
 }
 
 .authorimage{
-  max-height: 50%;
+  height: 400px;
+  max-width: 500px;
 }
 
 @keyframes App-logo-spin {
