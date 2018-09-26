@@ -80,7 +80,7 @@ ReactDOM.render(
     <BrowserRouter>
         <React.Fragment>
             <Route exact path="/" component={Game}/>
-            <Route path="/add-authors" component={AddAuthorForm}/>
+            <Route path="/add" component={AddAuthorForm}/>
         </React.Fragment>
     </BrowserRouter>
     ,
