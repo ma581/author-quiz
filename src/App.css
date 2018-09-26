@@ -22,9 +22,11 @@
   font-size: large;
 }
 
-.authorimage{
-  height: 400px;
-  max-width: 500px;
+.add-new-author{
+}
+
+.continue {
+  margin-top: 1%;
 }
 
 @keyframes App-logo-spin {

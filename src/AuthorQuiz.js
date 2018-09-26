@@ -29,7 +29,8 @@ export default class AuthorQuiz extends React.Component {
                 {this.state.attemptedToAnswer ? <Feedback isCorrect={this.state.answeredCorrectly}/> : <div/>}
                 <Header/>
                 <Turn {...turnProps}/>
-                {this.state.attemptedToAnswer ? <Continue onClick={() => this.continue()}/> : <div/>}
+                {this.state.attemptedToAnswer ? <Continue onClick={() => this.continue()} isCorrect={this.state.answeredCorrectly}/> : <div/>}
+
             </div>
         );
     }

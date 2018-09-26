@@ -5,6 +5,8 @@ import './index.css';
 import AuthorQuiz from './AuthorQuiz';
 import registerServiceWorker from './registerServiceWorker';
 import {shuffle, sample} from 'underscore';
+import {BrowserRouter, Route} from 'react-router-dom';
+import AddAuthorForm from "./AddAuthorForm";
 
 const authors = [
     {
@@ -60,12 +62,12 @@ function getTurnData(authors) {
 
 class Game extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {turnData: getTurnData(authors)}
     }
 
-    render(){
+    render() {
         return <AuthorQuiz {...this.state.turnData} onClick={() => this.refreshGame()}/>
     }
 
@@ -74,5 +76,13 @@ class Game extends React.Component {
     }
 }
 
-ReactDOM.render(<Game/>, document.getElementById('root'));
+ReactDOM.render(
+    <BrowserRouter>
+        <React.Fragment>
+            <Route exact path="/" component={Game}/>
+            <Route path="/add-authors" component={AddAuthorForm}/>
+        </React.Fragment>
+    </BrowserRouter>
+    ,
+    document.getElementById('root'));
 registerServiceWorker();
