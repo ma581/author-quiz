@@ -22,9 +22,9 @@
   font-size: large;
 }
 
-.add-new-author{
+.add-author-input{
+  margin-bottom: 2%;
 }
-
 .continue {
   margin-top: 1%;
 }

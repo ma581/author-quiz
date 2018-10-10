@@ -76,11 +76,19 @@ class Game extends React.Component {
     }
 }
 
+const onAddAuthor = (author) => {
+    authors.push(author);
+};
+
+function AddAuthorWrapper() {
+    return <AddAuthorForm onAddAuthor={onAddAuthor}/>
+}
+
 ReactDOM.render(
     <BrowserRouter>
         <React.Fragment>
             <Route exact path="/" component={Game}/>
-            <Route path="/add" component={AddAuthorForm}/>
+            <Route path="/add" component={AddAuthorWrapper}/>
         </React.Fragment>
     </BrowserRouter>
     ,
