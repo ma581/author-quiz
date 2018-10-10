@@ -5,7 +5,7 @@ import './index.css';
 import AuthorQuiz from './AuthorQuiz';
 import registerServiceWorker from './registerServiceWorker';
 import {shuffle, sample} from 'underscore';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, withRouter} from 'react-router-dom';
 import AddAuthorForm from "./AddAuthorForm";
 
 const authors = [
@@ -76,13 +76,20 @@ class Game extends React.Component {
     }
 }
 
-const onAddAuthor = (author) => {
+const addAuthor = (author) => {
+    if (authors.find(a => a.name === author.name)) {
+        alert(`author ${author.name} already exists!`);
+        return
+    }
     authors.push(author);
 };
 
-function AddAuthorWrapper() {
-    return <AddAuthorForm onAddAuthor={onAddAuthor}/>
-}
+const AddAuthorWrapper = withRouter(({history}) => {
+    return <AddAuthorForm onAddAuthor={(author) => {
+        addAuthor(author);
+        history.push('/')
+    }}/>
+});
 
 ReactDOM.render(
     <BrowserRouter>

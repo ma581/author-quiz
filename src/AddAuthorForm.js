@@ -18,9 +18,10 @@ export default class AddAuthorForm extends React.Component {
     };
 
     handleBookSubmit(book) {
-        const books = this.state.books;
-        books.push(book);
-        this.setState({books: books});
+        if(this.state.books.find(b => b===book)){
+            return
+        }
+        this.setState({books: this.state.books.concat(book)});
     };
 
     render() {
@@ -49,8 +50,9 @@ export default class AddAuthorForm extends React.Component {
                            id="inputImageURL"
                            name="imageUrl"
                            placeholder="Enter URL" onChange={(event) => this.handleOnChange(event)}/>
-                    <AddBook handleBookSubmit={(book) => this.handleBookSubmit(book)}/>
+                    <label htmlFor="inputImageURL">Books</label>
                     {this.state.books.map(book => <li key={book}>{book}</li>)}
+                    <AddBook handleBookSubmit={(book) => this.handleBookSubmit(book)}/>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
@@ -71,7 +73,6 @@ class AddBook extends React.Component {
 
     render() {
         return <div>
-            <label htmlFor="inputImageURL">Books</label>
             <div className="input-group">
                 <input type="text" className="form-control"
                        placeholder="Book title"
