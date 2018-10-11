@@ -10,6 +10,6 @@ describe('My first test', () => {
             .get('.col-6 > :nth-child(1)')
             .click()
             .get('.alert')
-            .should('have.class', 'alert-danger')
+            .get('#continue')
     });
 });
