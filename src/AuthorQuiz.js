@@ -4,48 +4,43 @@ import Feedback from './Feedback';
 import Continue from './Continue';
 import Header from './Header';
 import Turn from './Turn';
+import {connect} from 'react-redux';
 
-export default class AuthorQuiz extends React.Component {
-
-    constructor() {
-        super();
-        this.state = {
-            attemptedToAnswer: false,
-            answeredCorrectly: false,
-        };
-        this.handleOnClick.bind(this);
-        this.continue.bind(this);
-    }
+class AuthorQuiz extends React.Component {
 
     render() {
         const turnProps = {
             author: this.props.author,
             books: this.props.books,
-            onClick: t => this.handleOnClick(t)
+            onClick: a => this.props.onAnswerSelected(a)
         };
 
         return (
             <div>
-                {this.state.attemptedToAnswer ? <Feedback isCorrect={this.state.answeredCorrectly}/> : <div/>}
+                {this.props.attemptedToAnswer ? <Feedback isCorrect={this.props.answeredCorrectly}/> : <div/>}
                 <Header/>
                 <Turn {...turnProps}/>
-                {this.state.attemptedToAnswer ? <Continue onClick={() => this.continue()} isCorrect={this.state.answeredCorrectly}/> : <div/>}
+                {this.props.attemptedToAnswer ? <Continue onClick={() => this.props.onContinue()} isCorrect={this.props.answeredCorrectly}/> : <div/>}
             </div>
         );
     }
+}
 
-    handleOnClick(title) {
-        if(this.state.attemptedToAnswer){
-            return
-        }
-        this.setState({
-            attemptedToAnswer: true,
-            answeredCorrectly: this.props.correctBooks.find(t => t === title)
-        })
-    };
-
-    continue() {
-        this.setState({attemptedToAnswer: false});
-        this.props.onClick();
+function mapStateToProps(state) {
+    return {
+        author: state.turnData.author,
+        books: state.turnData.books,
+        correctBooks: state.turnData.correctBooks,
+        attemptedToAnswer: state.attemptedToAnswer,
+        answeredCorrectly: state.answeredCorrectly
     }
 }
+
+function mapDispatchToProps(dispatch){
+    return {
+        onAnswerSelected: (answer) => dispatch({type: 'ANSWER_SELECTED', answer}),
+        onContinue: () => dispatch({type: 'CONTINUE'})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthorQuiz)

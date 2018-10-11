@@ -3,10 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import AuthorQuiz from './AuthorQuiz';
-import registerServiceWorker from './registerServiceWorker';
 import {shuffle, sample} from 'underscore';
 import {BrowserRouter, Route, withRouter} from 'react-router-dom';
 import AddAuthorForm from "./AddAuthorForm";
+import * as Redux from 'redux';
+import * as ReactRedux from 'react-redux';
 
 const authors = [
     {
@@ -60,22 +61,6 @@ function getTurnData(authors) {
     }
 }
 
-class Game extends React.Component {
-
-    constructor() {
-        super();
-        this.state = {turnData: getTurnData(authors)}
-    }
-
-    render() {
-        return <AuthorQuiz {...this.state.turnData} onClick={() => this.refreshGame()}/>
-    }
-
-    refreshGame() {
-        this.setState({turnData: getTurnData(authors)});
-    }
-}
-
 const addAuthor = (author) => {
     if (authors.find(a => a.name === author.name)) {
         alert(`author ${author.name} already exists!`);
@@ -91,13 +76,40 @@ const AddAuthorWrapper = withRouter(({history}) => {
     }}/>
 });
 
+function reducer(state = {authors, turnData: getTurnData(authors)}, action) {
+    switch (action.type) {
+        case 'CONTINUE':
+            return Object.assign({}, state, {
+                turnData: getTurnData(authors),
+                attemptedToAnswer: false
+            });
+        case 'ANSWER_SELECTED':
+            if (state.attemptedToAnswer) {
+                return state
+            }
+            return Object.assign({}, state, {
+                attemptedToAnswer: true,
+                answeredCorrectly: state.turnData.correctBooks.find(t => t === action.answer)
+            });
+        default:
+            return state;
+    }
+}
+
+let store = Redux.createStore(reducer);
+
+const AuthorQuizWrapper = () => {
+    return <ReactRedux.Provider store={store}>
+        <AuthorQuiz/>
+    </ReactRedux.Provider>
+};
+
 ReactDOM.render(
     <BrowserRouter>
         <React.Fragment>
-            <Route exact path="/" component={Game}/>
+            <Route exact path="/" component={AuthorQuizWrapper}/>
             <Route path="/add" component={AddAuthorWrapper}/>
         </React.Fragment>
     </BrowserRouter>
     ,
     document.getElementById('root'));
-registerServiceWorker();
