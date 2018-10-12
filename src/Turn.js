@@ -8,8 +8,9 @@ export default function Turn({author, books, onClick}) {
         </div>
 
         <div className="col-6 list-group">
-            {books.map(title => <li className="list-group-item list-group-item-action"
+            {books.map((title, index) => <li className="list-group-item list-group-item-action"
                                     key={title}
+                                    id={"book-title-" + index}
                                     onClick={() => onClick(title)}>{title}</li>)}
         </div>
     </div>
